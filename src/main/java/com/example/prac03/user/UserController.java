@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Slf4j
+@CrossOrigin(origins = "http://127.0.0.1:5173", allowedHeaders = "*"
+        , methods = {RequestMethod.GET, RequestMethod.POST, RequestMethod.PUT, RequestMethod.DELETE})
 @RequestMapping("/api/v1/user")
 @RequiredArgsConstructor
 @RestController
@@ -22,7 +24,7 @@ public class UserController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<User> findUser(@PathVariable Long id){
+    public ResponseEntity<User> findUserById(@PathVariable(name = "id") Long id){
         return new ResponseEntity<>(userService.findUser(id), HttpStatus.OK);
     }
 

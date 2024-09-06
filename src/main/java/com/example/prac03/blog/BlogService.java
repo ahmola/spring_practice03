@@ -29,9 +29,9 @@ public class BlogService {
         Blog blog = new Blog();
         blog.setSubject(blogDTO.getSubject());
         blog.setBody(blogDTO.getBody());
-        if(!userRepository.existsById(blogDTO.getId()))
+        if(!userRepository.existsById(blogDTO.getUser_id()))
             throw new RuntimeException("There is no such user : " + blogDTO.getUser_id());
-        blog.setUser(userRepository.findById(blogDTO.getId()).get());
+        blog.setUser(userRepository.findById(blogDTO.getUser_id()).get());
         blogRepository.save(blog);
         return blogDTO;
     }
